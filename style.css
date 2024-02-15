@@ -1,0 +1,75 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    max-width: 1000px;
+}
+
+a {
+    cursor: pointer;
+}
+
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.popup {
+    margin-left: 5px;
+}
+
+form input[type="text"] {
+    min-width: 100%;
+    /* margin-right: 0; */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+label:has(> #show-advanced:checked)~.section-advanced {
+    display: block;
+}
+
+.section-advanced {
+    display: none;
+}
+
+.side-by-side {
+    gap: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.side-by-side span {
+    margin: 0;
+    padding: 0;
+    font-size: .9rem;
+    transform: translateY(-4px);
+    opacity: 0;
+}
+
+details:not([open]) summary {
+    background-color: white;
+}
+
+.note {
+    margin-top: 0;
+}

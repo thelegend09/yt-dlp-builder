@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YT-DLP Command Builder</title>
+    <link
+      href="https://unpkg.com/remixicon/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js" defer></script>
+
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEHBv8BAxb/CQwa/wkTB/8kLiL/IzAo/yMtIf8IEQf/DBYJ/wQOAv8JEgj/DxkM/wAAAAAAAAAAAAAAADg8Mf+TqOX/fJvq/1poov8ECQD/Fx8Y/xMZE/8jJyH/Jy4n/xssHv8SHxf/DRkN/xAYEf8AAAAAAAAAAG5ubw5MUEr/rMT0/6S49f89R5X/BhIM/xMcEv8sNC3/Lzcw/zA5L/8vOC7/IS8j/xceF/8TGhX/AAAAAAAAAAAAAAAAUFVT/0VJSf/Q2+D/IS40/ywzLv8rMyn/LDou/y84Lv8wOS//MDgu/y02LP8bLB//GR4d/wAAAAAAAAAAAAAAAFldX8khJxz/ERgR/w8ZM/+Wn9//LDMo/yIzJ/8hMSb/JzEl/yArIf8pNCj/HCoe/xgfGP8AAAAAAAAAAAAAAAAAAAAARkhI9xcbFf8dKzH/lrbx/87b7/8gIBr/CRII/wcRBP8fJh//ISki/xskGv8XHhf/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEx8N/6Kn1/+ChrD/bXuF/77D2P8ZJiP/AAYB/w0WDP8OGAv/DRYM/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHuEmP8sNUL/U1pu/5Cesf98kbD/uMPV/7a90P+irLz/AAEC/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAENlZQJFR1H/Ehoh/3J8mv+frMb/mbLS/2eCq/+CoMT/jKS6/2Fwgf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbGx6/wUSIv+RlbH/0Nbp/5avz/+Urtb/dZK+/2+Ktv9LW3X/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF1hc/+xtMn/0NHf/5ywz/+DncL/p77e/4+o1P9xirb/OVVy/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhccP8FFS7/ytPi/6693v9CVIP/Eys//1ZtmP9vkr3/d5K+/y1Qef8/U23/AAAAAAAAAAAAAAAAAAAAAAAAAABFVWL/Ynib/668z/+Dqcn/UXau/3Sbx/+Ep8n/gpfE/zxfjf8mRW7/JENq/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGZyiv+5t83/labD/2SJtf9xmL//f5bD/1Nql/8oRWz/JEdo/xY6WP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnNj//dn2M/6atvP9/krP/cois/22Dp/9HYYb/I0Bf/xMuQv8jOUoSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8SEr/XGdw/2Jte/9GU2P/MDpJ/wAAAAAAAAAAAAAAAAAAAAAAAAAAwAMAAIADAACAAwAAgAMAAIADAADAAwAA8AMAAPAHAADwBwAA8AcAAPAHAADgAwAA4AMAAPADAADwBwAA/B8AAA=="
+      rel="icon"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>YT-DLP Command Builder</h1>
+      <p>
+        This page will help you build a <code>yt-dlp</code> command. <em>
+          It will not run it—you'll have to run it yourself.
+        </em>
+        </p>
+
+        <p>It is assumed that: 
+          <ul>
+            <li>You know what <code>yt-dlp</code> is and does.</li>
+            <li><code>yt-dlp</code> is installed on your computer as a PATH variable.</li>
+            <li><code>ffmpeg</code> is installed on your computer as a PATH variable.</li>
+            <li>You know how to use the terminal.</li>
+          </ul>
+        </p>
+     <p>
+       
+       If you have more questions about
+       usage,
+       <a
+         href="https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#usage-and-options"
+         target="_blank"
+         >go see the official documentation</a
+       >.
+     </p>
+      
+
+      <!-- Form for command options -->
+      <form id="commandForm">
+        <fieldset>
+          <legend>What to download</legend>
+          <div>
+            <label for="url"
+              >Video URL (<a class="click-to-paste">Paste URL from clipboard</a
+              >)</label
+            >
+            <input
+              type="text"
+              id="url"
+              name="url"
+              required
+              value="https://www.youtube.com/watch?v=60ItHLz5WEA"
+            />
+          </div>
+          <div>
+            <label for="playlist">Is it a playlist?</label>
+            <select id="playlist" name="playlist">
+              <option value="">Select Option</option>
+              <option value="--yes-playlist">Yes</option>
+              <option value="--no-playlist">No</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- Extract Audio -->
+        <fieldset class="audio-section">
+          <legend>Audio Parameters</legend>
+          <p class="note">
+            Note: If you don't want to download only the audio, leave these
+            fields blank.
+          </p>
+          <div class="side-by-side">
+            <div>
+              <label for="extractAudio"
+                >Convert to audio?<popup
+                  >Convert video files to audio-only files (requires ffmpeg and
+                  ffprobe)</popup
+                ></label
+              >
+              <select id="extractAudio" name="extractAudio">
+                <option value="">Select Option</option>
+                <option value="--extract-audio">Yes</option>
+                <option value="">No</option>
+              </select>
+            </div>
+            <div>
+              <!-- Audio Format -->
+              <label for="audioFormat"
+                >Audio Format<popup
+                  >Format to convert the audio to when -x is used. (currently
+                  supported: best (default), aac, alac, flac, m4a, mp3, opus,
+                  vorbis, wav).</popup
+                ></label
+              >
+              <select id="audioFormat" name="audioFormat">
+                <option value="">Select Format</option>
+                <option value="--audio-format best">best</option>
+                <option value="--audio-format mp3">mp3</option>
+                <option value="--audio-format aac">aac</option>
+                <option value="--audio-format opus">opus</option>
+                <option value="--audio-format vorbis">vorbis</option>
+                <option value="--audio-format flac">flac</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="video-section">
+          <legend>Video Parameters</legend>
+
+          <!-- Video Format -->
+          <div>
+            <label for="format"
+              >Video Format
+              <a
+                onClick="document.querySelector('#format').value = '&quot;bestvideo[height=1080]+bestaudio/best[height<=1080]/best&quot;'"
+                >(Restore default?)</a
+              ><popup
+                >Resolution and audio. Default value will get the best video
+                resolution up to 1080p, along with the best audio.</popup
+              ></label
+            >
+            <!-- prettier-ignore -->
+            <textarea type="text" id="format" name="--format" rows="1">"bestvideo[height=1080]+bestaudio/best[height<=1080]/best"</textarea
+            >
+          </div>
+          <!-- Merge Output Format -->
+          <div>
+            <label for="merge-output-format">Convert video</label>
+
+            <select id="merge-output-format" name="merge-output-format">
+              <option value="--merge-output-format mp4">MP4</option>
+              <option value="">auto</option>
+              <option value="--merge-output-format webm">WEBM</option>
+              <option value="--merge-output-format mkv">MKV</option>
+              <option value="--merge-output-format mov">MOV</option>
+              <option value="--merge-output-format avi">AVI</option>
+              <option value="--merge-output-format flv">FLV</option>
+            </select>
+          </div>
+          <details>
+            <summary>More details</summary>
+            <h3>Video Format</h3>
+            <ol>
+              <li>
+                <p>
+                  <strong>Filtering Video Formats</strong>: You can choose the
+                  quality of the video you want to download. For example, if you
+                  want a high-quality video, you can type
+                  <code>-f &quot;best[height=720]&quot;</code>. If you want a
+                  video that is larger than 10MB, you can type
+                  <code>-f &quot;[filesize&gt;10M]&quot;</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Comparisons</strong>: You can use symbols like
+                  <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>,
+                  <code>&gt;=</code>, <code>=</code>, <code>!=</code> to compare
+                  the video&#39;s properties. For example,
+                  <code>height&lt;480</code> means the video&#39;s height is
+                  less than 480 pixels.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Meta Fields</strong>: These are properties of the
+                  video. Some examples are <code>filesize</code> (how big the
+                  video file is), <code>width</code> (how wide the video is),
+                  <code>height</code> (how tall the video is), and
+                  <code>fps</code> (how many frames per second the video has).
+                  You can use these fields in your filters.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>String Comparisons</strong>: You can also filter
+                  videos based on text properties. For example,
+                  <code>url</code> (the web address of the video),
+                  <code>ext</code> (the video file&#39;s extension),
+                  <code>acodec</code> (the audio codec used), and
+                  <code>vcodec</code> (the video codec used). You can use
+                  symbols like <code>=</code>, <code>^=</code>, <code>$=</code>,
+                  <code>*=</code>, <code>~=</code>, <code>!=</code> to compare
+                  these properties.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Grouping Selectors</strong>: You can group format
+                  selectors using parentheses. For example,
+                  <code>-f &quot;(mp4,webm)[height&lt;480]&quot;</code> will
+                  download the best mp4 or webm video that is less than 480
+                  pixels tall.
+                </p>
+              </li>
+            </ol>
+            <p>
+              Remember, not all these properties are always available for every
+              video. It depends on the information provided by the website
+              you&#39;re downloading from. If a property is not known, you can
+              add a question mark (?) after the operator. For example,
+              <code>height&lt;=?720</code> selects videos up to 720p, or videos
+              where the height is not known.
+            </p>
+          </details>
+        </fieldset>
+
+        <fieldset class="misc-section">
+          <legend>Misc</legend>
+          <div>
+            <!-- Split chapters -->
+            <label for="splitChapters"
+              >Split chapters<popup
+                >Split video into multiple files based on internal chapters. The
+                "chapter:" prefix can be used with "--paths" and "--output" to
+                set the output filename for the split files.</popup
+              ></label
+            >
+            <select id="splitChapters" name="splitChapters">
+              <option value="">Select Option</option>
+              <option value="--split-chapters">Yes</option>
+              <option value="">No</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <label for="show-advanced">
+          <input type="checkbox" name="show-advanced" id="show-advanced" />Show
+          advanced settings</label
+        >
+        <fieldset class="section-advanced">
+          <legend>Advanced</legend>
+          <div class="side-by-side">
+            <div>
+              <label for="remuxVideo"
+                >Remux Video<popup
+                  >Remux the video into another container if necessary
+                  (currently supported: avi, flv, gif, mkv, mov, mp4, webm, aac,
+                  aiff, alac, flac, m4a, mka, mp3, ogg, opus, vorbis, wav). If
+                  target container does not support the video>audio codec,
+                  remuxing will fail. You can specify multiple rules; e.g.
+                  "aac>m4a/mov>mp4/mkv" will remux aac to m4a, mov to mp4 and
+                  anything else to mkv</popup
+                ></label
+              >
+              <input
+                type="text"
+                id="remuxVideo"
+                name="remuxVideo"
+                placeholder="e.g. mkv"
+              />
+            </div>
+
+            <div>
+              <label for="formatSort">Format Sort<popup></popup></label>
+              <input
+                type="text"
+                id="formatSort"
+                name="--formatSort"
+                placeholder="e.g. size,br"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="postprocessorArgs"
+              >Postprocessor Args<popup
+                >Give these arguments to the postprocessors. Specify the
+                postprocessor/executable name and the arguments separated by a
+                colon ":" to give the argument to the specified
+                postprocessor/executable. Supported PP are: Merger,
+                ModifyChapters, SplitChapters, ExtractAudio, VideoRemuxer,
+                VideoConvertor, Metadata, EmbedSubtitle, EmbedThumbnail,
+                SubtitlesConvertor, ThumbnailsConvertor, FixupStretched,
+                FixupM4a, FixupM3u8, FixupTimestamp and FixupDuration. The
+                supported executables are: AtomicParsley, FFmpeg and FFprobe.
+                You can also specify "PP+EXE:ARGS" to give the arguments to the
+                specified executable only when being used by the specified
+                postprocessor. Additionally, for ffmpeg/ffprobe, "_i"/"_o" can
+                be appended to the prefix optionally followed by a number to
+                pass the argument before the specified input/output file, e.g.
+                --ppa "Merger+ffmpeg_i1:-v quiet". You can use this option
+                multiple times to give different arguments to different
+                postprocessors. (Alias: --ppa)</popup
+              ></label
+            >
+            <textarea
+              type="text"
+              id="postprocessorArgs"
+              name="--postprocessorArgs"
+              placeholder="e.g. Merger+ffmpeg_i1:-v quiet"
+              rows="1"
+            ></textarea>
+          </div>
+        </fieldset>
+      </form>
+      <div class="result">
+        <div class="side-by-side">
+          <button type="submit" id="generate-command">Generate Command</button>
+          <span>Copied to clipboard!</span>
+        </div>
+        <!-- Display the generated command -->
+        <h2>Generated Command:</h2>
+        <textarea id="generatedCommand" rows="4" style="width: 100%"></textarea>
+        <p>Paste the above in the terminal, hit enter, and you should be good to go!</p>
+      </div>
+    </div>
+  </body>
+</html>
