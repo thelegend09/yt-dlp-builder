@@ -29,7 +29,7 @@ You can find all the information you could ever want or need in `yt-dlp` [offici
 
 I used `water.css` to style this utility. I only customized a few things. It's really nice when you want to have something that looks good with very, very minimal effort. [Check it out here](https://watercss.netlify.app).
 
-Pro-tip: If you do end up using `water.css`, make sure to add this to your CSS, otherwise a few things may look wonky.
+Pro-tip: If you do end up using `water.css`, make sure to add this to your CSS, otherwise a few things may look wonky (ask me how I know).
 
 ```css
 html {
