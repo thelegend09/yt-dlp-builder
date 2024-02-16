@@ -23,7 +23,9 @@ choco install ffmpeg yt-dlp
 
 You can find all the information you could ever want or need in [`yt-dlp` officiel Github page](https://github.com/yt-dlp/yt-dlp/tree/2023.12.30?tab=readme-ov-file#usage-and-options).
 
-## Misc
+## Styling
+
+### Water.css
 
 I used `water.css` to style this utility. I only customized a few things. It's really nice when you want to have something that looks good with very, very minimal effort. [Check it out here](https://watercss.netlify.app).
 
@@ -40,3 +42,11 @@ html {
   box-sizing: inherit;
 }
 ```
+
+### Tippy.js
+
+I love how easy it is to create tooltips with [tippy.js](https://atomiks.github.io/tippyjs/).
+
+### Remixicon
+
+[Remixicon.com](https://remixicon.com) is my favorite open source icon library.
