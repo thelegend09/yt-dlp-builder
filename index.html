@@ -25,7 +25,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>YT-DLP Command Builder</h1>
+      <h1>yt-dlp — Command Builder</h1>
       <p>
         This page will help you build a <code>yt-dlp</code> command. <em>
           It will not run it—you'll have to run it yourself.
@@ -66,7 +66,7 @@
               id="url"
               name="url"
               required
-              value="https://www.youtube.com/watch?v=60ItHLz5WEA"
+              value=""
             />
           </div>
           <div>
@@ -320,6 +320,15 @@
         <h2>Generated Command:</h2>
         <textarea id="generatedCommand" rows="4" style="width: 100%"></textarea>
         <p>Paste the above in the terminal, hit enter, and you should be good to go!</p>
+        <p class="note">
+          Some comments about the generated command:
+          <ul>
+            <li><code>--no-mtime</code> means that the "modified date" of the file on Windows will 
+              be the date when you downloaded the file, as opposed to the default behavior, which would be to keep the upload date.
+            </li>
+            <li><code>-o "~/Downloads/%(title)s.%(ext)s"</code> means that the output file will be name like <code>Never Gonna Give You Up.mp4</code> and will be placed in your default Downloads folder.</li>
+          </ul>
+        </p>
       </div>
     </div>
   </body>
