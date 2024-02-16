@@ -1,14 +1,24 @@
-function generateCommand(e) {
+window.onload = () => {
+  const getCommandBtn = document.querySelector("#generate-command");
+  getCommandBtn.addEventListener("click", generateCommand);
+
+  // Select the anchor element with the class 'click-to-paste'
+  const anchorElement = document.querySelector("a.click-to-paste");
+  // Add the event listener to the anchor element
+  anchorElement.addEventListener("click", eventHandler);
+};
+
+function generateCommand() {
   // Get form elements
-  var form = document.getElementById("commandForm");
-  var elements = form.elements;
+  const form = document.getElementById("commandForm");
+  const elements = form.elements;
 
   // Initialize the command with yt-dlp and default parameters
-  var command = 'yt-dlp -o "~/Downloads/%(title)s.%(ext)s" --no-mtime';
+  let command = 'yt-dlp -o "~/Downloads/%(title)s.%(ext)s" --no-mtime';
 
   // Loop through form elements and append selected options to the command
-  for (var i = 0; i < elements.length; i++) {
-    var item = elements[i];
+  for (let i = 0; i < elements.length; i++) {
+    const item = elements[i];
 
     // Do not add the URL (it will be added at the end)
     // Do not add the value of the checkbox that serves
@@ -42,18 +52,8 @@ function generateCommand(e) {
   toClipboard(command);
 }
 
-window.onload = () => {
-  let getCommandBtn = document.querySelector("#generate-command");
-  getCommandBtn.addEventListener("click", generateCommand);
-
-  // Select the anchor element with the class 'click-to-paste'
-  let anchorElement = document.querySelector("a.click-to-paste");
-  // Add the event listener to the anchor element
-  anchorElement.addEventListener("click", eventHandler);
-};
-
 // Define the event handler function
-let eventHandler = function (event) {
+const eventHandler = function (event) {
   // Prevent the default action
   event.preventDefault();
 
@@ -71,12 +71,12 @@ let eventHandler = function (event) {
 };
 
 function isURL(str) {
-  var pattern = new RegExp(/^(https:|http:|www\.)\S*/gm); // fragment locator
+  const pattern = new RegExp(/^(https:|http:|www\.)\S*/gm); // fragment locator
   return !!pattern.test(str);
 }
 
 function toClipboard(str) {
-  let copyConfirmation = document.querySelector(".side-by-side span");
+  const copyConfirmation = document.querySelector(".side-by-side span");
 
   const handleResult = (message) => {
     copyConfirmation.textContent = message;
