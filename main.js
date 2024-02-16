@@ -4,8 +4,7 @@ window.onload = () => {
 
   // Select the anchor element with the class 'click-to-paste'
   const anchorElement = document.querySelector("a.click-to-paste");
-  // Add the event listener to the anchor element
-  anchorElement.addEventListener("click", eventHandler);
+  anchorElement.addEventListener("click", copyHandler);
 };
 
 function generateCommand() {
@@ -44,17 +43,18 @@ function generateCommand() {
   }
 
   // Display the generated command
-  let URL = document.getElementById("url");
+  let downloadUrl = document.getElementById("url").value;
 
-  command += " " + URL.value;
+  // the ampersand needs to be
+  downloadUrl = downloadUrl.replace("&", '"&"');
+
+  command += " " + downloadUrl;
   document.getElementById("generatedCommand").value = command;
 
   toClipboard(command);
 }
 
-// Define the event handler function
-const eventHandler = function (event) {
-  // Prevent the default action
+const copyHandler = function (event) {
   event.preventDefault();
 
   // Read the text from the clipboard
@@ -62,16 +62,20 @@ const eventHandler = function (event) {
     // Check if the clipboard text is a URL
     if (isURL(clipboardText)) {
       // If it is, set the text content of the element with ID 'url' to the clipboard text
-      document.getElementById("url").textContent = clipboardText;
+      document.getElementById("url").value = clipboardText;
+      // console.log("Link has been copied");
     } else {
       // If it's not, show an alert
-      alert("The clipboard doesn't contain a URL");
+      alert("The clipboard doesn't contain a valid URL");
     }
   });
 };
 
+// ======================================================================
+// Helper utilities
+
 function isURL(str) {
-  const pattern = new RegExp(/^(https:|http:|www\.)\S*/gm); // fragment locator
+  const pattern = new RegExp(/^(https:|http:|www\.)\S*/gm);
   return !!pattern.test(str);
 }
 
