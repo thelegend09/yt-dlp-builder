@@ -21,7 +21,7 @@ choco install ffmpeg yt-dlp
 
 ## Documentation
 
-You can find all the information you could ever want or need in [`yt-dlp` officiel Github page](https://github.com/yt-dlp/yt-dlp/tree/2023.12.30?tab=readme-ov-file#usage-and-options).
+You can find all the information you could ever want or need in `yt-dlp` [official Github page](https://github.com/yt-dlp/yt-dlp/tree/2023.12.30?tab=readme-ov-file#usage-and-options).
 
 ## Styling
 
